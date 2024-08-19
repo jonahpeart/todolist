@@ -1,7 +1,7 @@
 import { getCurrentProject } from '../currentProjectState.js';
 import { elements } from '../elements.js';
 import { deleteTask } from '../storage.js';
-import newTaskModalHandler from './newTaskModalHandler.js';
+import newTaskModalHandler from './taskModals.js';
 
 export default function taskHandlers() {
 ///////////NEW TASK LIST ITEM EVENT////////////////////////////////////////////////////
@@ -23,12 +23,6 @@ export default function taskHandlers() {
     })
 ///////////TASK LIST ITEM DELETE EVENT////////////////////////////////////////////////////
     Array.prototype.forEach.call(elements.taskListItem.deleteTasks, function (node){
-        node.addEventListener('click', () => { 
-            const currentProject = getCurrentProject()
-
-            // console.log(node.classList[3])
-            deleteTask(currentProject, node.classList[3])
-
-        });
+        node.addEventListener('click', () => { deleteTask(getCurrentProject(), node.classList[3])});
     })
 }

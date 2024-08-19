@@ -6,6 +6,7 @@ elements = {
     editProject: document.querySelector(".edit-project"),
     sidebar:{
         newProject: document.querySelector(".add-project"),
+        projectContainer: document.querySelector(".projects-ul"),
         projectListItem:{
             get projectTitle() { 
                 return document.querySelectorAll(".project-sidebar-li");

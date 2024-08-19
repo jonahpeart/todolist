@@ -1,3 +1,4 @@
+import { getCurrentProject } from './currentProjectState.js';
 import { initializeElements, elements } from './elements.js';
 import projectHandlers from './handlers/projectHandlers.js';
 import taskHandlers from './handlers/taskHandlers.js';
@@ -29,7 +30,7 @@ export const render = (savedProjects, currentProject) => {
             });
         }
 
-    projectHandlers(); // Re-attach project handlers if needed
+    // projectHandlers(); // Re-attach project handlers if needed
     taskHandlers(); // Adds event listeners to tasks
 };
 
@@ -43,7 +44,15 @@ const insertHTML = (container, html) => {
 };
 
 const displayCurrentProjectName = (projectName) => {
-    elements.header.currentProjectTitle.innerHTML = `<span class="current-project-inner-title">// ${projectName} // </span> <br> Project`;
+    const currentProject = getCurrentProject()
+
+    if (currentProject.projectName === "Today"){
+        elements.editProject.style.display = "none"
+        elements.header.currentProjectTitle.innerHTML = `<span class="current-project-inner-title ${1}">// ${projectName} // </span> <br> Project`;
+    } else {
+        elements.editProject.style.display = "block"
+        elements.header.currentProjectTitle.innerHTML = `<span class="current-project-inner-title ${1}">// ${projectName} // </span> <br> Project`;
+    }
 };
 
 const generateTaskHTML = (task, index) => `

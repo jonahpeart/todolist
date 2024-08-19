@@ -1,6 +1,5 @@
 import { elements } from '../elements.js';
-import newProjectModalHandler from './newProjectModalHandler.js';
-import { getProjects } from '../storage.js';
+import {editProjectModalHandler, newProjectModalHandler} from './projectModals.js';
 import { setCurrentProject } from '../currentProjectState.js';
 
 export default function projectHandlers() {
@@ -9,14 +8,13 @@ export default function projectHandlers() {
         newProjectModalHandler()
     });
 //////////EDIT PROJECT EVENT///////////////////////////////////////////////
-    elements.editProject.addEventListener('click', () => {
-        elements.editProjectModal.editProjectModalTrigger.style.display="block"
-        console.log('Edit Project clicked');
-    });
+        elements.editProject.addEventListener('click', () => {
+                editProjectModalHandler()
+        });   
 /////////PROJECT LIST ITEM CLICK EVENT/////////////////////////////////////
-        Array.prototype.forEach.call(elements.sidebar.projectListItem.projectTitle, function (node){
-            node.addEventListener('click', () => {
-            setCurrentProject(node.textContent)
-            });
-        })
-    }
+    elements.sidebar.projectContainer.addEventListener('click', e => {
+        if (e.target.matches(".project-sidebar-li")){
+            setCurrentProject(e.target.textContent)
+        }
+    });
+}

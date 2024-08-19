@@ -16,7 +16,6 @@ export default function newTaskModalHandler() {
         const errorMessages = validations
             .filter(validation => validation.test(elements.newTaskModal[validation.field].value))
             .map(validation => validation.message);
-
         if (errorMessages.length > 0) {
             elements.formError[1].innerText = errorMessages.join("\r\n");
         } else if (errorMessages.length === 0) {

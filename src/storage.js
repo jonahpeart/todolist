@@ -1,8 +1,6 @@
 import { getCurrentProject, setCurrentProject } from './currentProjectState.js';
-import { elements, initializeElements } from './elements.js';
-import { render} from './render.js';
+import { elements } from './elements.js';
 
-// Utility functions for localStorage operations
 function getProjects() {
 
     const projects = localStorage.getItem('projects');
@@ -16,7 +14,6 @@ function saveProjects(projects) {
     localStorage.setItem('projects', JSON.stringify(projects));
 }
 
-// Function to add a project
 function addProject(newProjectName) {
     const newProject = {
         projectName: newProjectName,
@@ -72,4 +69,19 @@ function deleteTask(currentProject, taskIndex) {
 
 }
 
-export { getProjects, saveProjects, addProject, newTask, deleteTask };
+function editProject(newName){
+
+    const projects = getProjects()
+    const currentProject = getCurrentProject()
+
+    const projectIndex = projects.findIndex(project => project.projectName === currentProject.projectName);
+
+    projects[projectIndex].projectName = newName
+    saveProjects(projects)
+    setCurrentProject(newName)
+
+    elements.editProjectModal.editProjectModalTrigger.style.display = "none"
+    
+}
+
+export { getProjects, saveProjects, addProject, newTask, deleteTask, editProject };
