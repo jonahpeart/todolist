@@ -1,0 +1,36 @@
+import { elements } from '../elements.js';
+import { taskValidations } from '../formValidation.js'
+import { newTask } from '../storage.js';
+
+export default function newTaskModalHandler() {
+    elements.formError[1].innerHTML = '' // Clear error div
+    elements.newTaskModal.newTaskModalTrigger.style.display="block" // show modal
+
+
+/////////////// SUBMIT EVENT //////////////////////////////////////////////////////
+    elements.newTaskModal.newTaskForm.addEventListener('submit', handleSubmit)
+        
+        function handleSubmit(e) {
+        e.preventDefault();
+        const validations = taskValidations(); /////Import Validation function
+        const errorMessages = validations
+            .filter(validation => validation.test(elements.newTaskModal[validation.field].value))
+            .map(validation => validation.message);
+
+        if (errorMessages.length > 0) {
+            elements.formError[1].innerText = errorMessages.join("\r\n");
+        } else if (errorMessages.length === 0) {
+            elements.newTaskModal.newTaskModalTrigger.style.display="none" 
+            newTask()
+            elements.newTaskModal.newTaskForm.reset();
+        }
+    }; 
+/////////////// CANCEL BUTTON ///////////////////////////////////////////////////
+elements.newTaskModal.newTaskCancel.addEventListener('click', function(e) {
+    e.preventDefault()
+    elements.newTaskModal.newTaskForm.reset();
+    elements.newTaskModal.newTaskForm.removeEventListener('submit', handleSubmit);
+    elements.newTaskModal.newTaskModalTrigger.style.display="none" 
+}); 
+}
+

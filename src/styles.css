@@ -1,0 +1,496 @@
+:root{
+    --main-txt-color: rgb(19, 24, 66);
+    --secondary-bg-color: rgb(236, 206, 174);
+    --main-fg-color: rgb(230, 131, 105);
+    --main-bg-color: rgb(251, 246, 226);
+}
+body{
+    display: flex;
+    justify-content: center;
+}
+
+
+*{
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 250,
+    'GRAD' 0,
+    'opsz' 20
+  }
+
+.application-container {
+    position: relative;
+    margin-top: 10vh;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    min-width: 500px;
+    max-width: 1200px;
+    width: 80vw;
+    height: 80vh;
+    border: solid 1px black;
+}
+
+span{
+    vertical-align: bottom;
+}
+
+button, input[type=submit]{
+    border: 1px solid var(--main-txt-color);
+    background-color: var(--secondary-bg-color);
+}
+
+.sidebar-container{
+    z-index: 1;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-bg-color);
+    border-right: 1px solid var(--main-txt-color);
+}
+
+
+.title{
+    align-self: center;
+    position: relative;
+    font-size: 2rem;
+    margin: 1rem 0 2rem 0;
+}
+.title::after{
+    content: '';
+    position: absolute;
+    left: 15%;
+    bottom: -1rem;
+    width: 70%;
+    height: 1px;
+    background-color: var(--main-fg-color);
+}
+.title::before{
+    z-index: -1;
+    content: '';
+    position: absolute;
+    border: 1px solid;
+    left: -5px;
+    width: 1rem;
+    height: 1rem;
+    background: linear-gradient( var(--main-fg-color), var(--main-bg-color));
+
+}
+
+.project-sidebar-header{
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.projects-ul{
+    display: flex;
+    flex-direction: column;
+}
+
+.project-sidebar-li{
+padding: 1rem;
+color: var(--main-txt-color);
+position: relative;
+list-style: none ;
+}
+.project-sidebar-li:hover::before, .project-sidebar-li:hover {
+    display: block; 
+    color: var(--main-fg-color); 
+    cursor: pointer;
+
+}
+.project-sidebar-li::before{
+    display: none;
+    content: '';
+    position: absolute;
+    rotate: -90deg;
+    border: 10px solid;
+    border-color: var(--main-fg-color) #0000 #0000 #0000;
+    top: 0;
+    left: 15px;
+    height: 60%;
+
+}
+.project-sidebar{
+    list-style: none;
+}
+
+
+.content-container{
+    height: calc(80vh - 2px);
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(6,1fr);
+}
+
+
+button, input[type=submit]{
+    width: 120px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 5px;
+    border-radius: 20px;
+    align-items: center;
+}
+button:hover, input[type=submit]:hover{
+    background-color: var(--main-bg-color);
+    cursor: pointer;
+}
+
+
+.current-project-header{
+    grid-row: 0 / 1;
+    display: grid;
+    padding: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+    border-bottom: 1px solid var(--main-txt-color);
+   background: linear-gradient(to left, var(--main-bg-color), var(--secondary-bg-color));
+}
+.current-project-header>div{
+  justify-content: center;
+gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.current-project-inner-title{
+  font-size: 1.5rem;
+}
+.task-list-container{
+   grid-row: 2/7;
+    overflow-y: scroll;
+}
+
+.permanent-li{
+  display: none;
+}
+
+.task-item-container{
+    row-gap: .5rem;
+    padding: 5px;
+    margin: 10px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--main-bg-color);
+}
+.task-title{
+  z-index: 1;
+    grid-column: 2 / 6;
+    position: relative;
+}
+.urgent{
+  position: relative;
+}
+.urgent::after{
+  margin-left: .5rem;
+  border-radius: 25px;
+  content: '';
+  z-index: 100;
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  background-color: red;
+}
+.task-item::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    background-color: var(--main-fg-color);
+}
+.task-item:hover{
+    color: var(--main-fg-color);
+    cursor: pointer;
+}
+
+.notes-div{
+  grid-row: 2;
+  grid-column: 2 / 6;
+  display: flex;
+}
+.task-notes{
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.39);
+  background-color: rgba(255, 255, 255, 0.616);
+  border-radius: 5px;
+  padding: .25rem;
+}
+.task-due{
+    grid-column: 6 / 9;
+    justify-self: center;
+    margin-left: .5rem;
+
+}
+.subscript{
+    font-size: .8rem;
+    justify-self:end;
+    padding-right: 3px;
+}
+
+/*////////SCROLLBAR////////////////////////////////////////////////////////*/
+::-webkit-scrollbar {
+    width: 1rem;
+
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--main-bg-color);
+    border-left: 1px solid var(--main-txt-color);
+  }
+  ::-webkit-scrollbar-thumb {
+    border-left: 1px solid var(--main-txt-color);
+    background: var(--secondary-bg-color);
+  }
+/*////////////////////////////////////////////////////////////////*/
+
+
+/* //////////CHECKBOX//////////////////////////////////////////////////// */
+.round {
+    position: relative;
+    height: 2rem;
+    width: 2rem;
+    background-color: white;
+    border: 1px solid var(--main-txt-color);
+    border-radius: 20px;
+  }
+
+
+.checked::after {
+    border: 2px solid var(--main-txt-color);
+    border-top: none;
+    border-right: none;
+    content: '';
+    height: 6px;
+    left: 8px;
+    position: absolute;
+    top: 9px;
+    transform: rotate(-45deg);
+    width: 12px;
+
+  }
+  .checked{
+    background-color: greenyellow;
+  }
+
+  /* ////////////////////////////////////////////////////////////// */
+
+/*///////////////////////////////CREATE PROJECT MODAL////////////////////*/
+.error-message{
+  position: absolute;
+  top: .5rem;
+  left: .5rem;
+  color: red;
+}
+
+  .modal-project-trigger{
+    z-index: 20;
+    position: fixed; /* Positioning and size */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.596); /* color */
+    display: none; /* making it hidden by default */
+  }
+  .new-project-modal{
+    justify-content: space-around;
+    z-index: 30;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    background-color: var(--main-bg-color);
+    width: 80%;
+    height: 40%;
+    border: solid 1px var(--main-txt-color);
+  }
+  .button-project-modal-container{
+    display: flex;
+    justify-content: space-around;
+  }
+  .create-project, .cancel-project{
+    display: flex;
+    justify-content: center;
+    padding: .5rem 1rem;
+  }
+  .new-project-modal-input{
+
+    height: 2rem;
+    width: 400px;
+    border-radius: 15px;
+    padding: 1rem;
+    border: 1px solid var(--main-txt-color);
+  }
+.input-project-modal-container{
+  position: relative;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+ /* ////////////////////////////////////////////////////////////// */
+
+ /*///////////////////////////////CREATE TASK MODAL////////////////////*/
+ .modal-task-trigger{
+    z-index: 20;
+    position: fixed; /* Positioning and size */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.596); /* color */
+    display: none; /* making it hidden by default */
+  }
+  .new-task-modal{
+    justify-content: space-around;
+    z-index: 30;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    background-color: var(--main-bg-color);
+    width: 80%;
+    height: 60%;
+    border: solid 1px var(--main-txt-color);
+  }
+  .button-task-modal-container{
+    display: flex;
+    justify-content: space-around;
+  }
+  .create-task, .cancel-task{
+    display: flex;
+    justify-content: center;
+    padding: .5rem 1rem;
+  }
+
+  .new-task-modal-input-name{
+    height: 2rem;
+    width: 400px;
+    border-radius: 15px;
+    padding: 1rem;
+    border: 1px solid var(--main-txt-color);
+  }
+.input-task-modal-container{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+.input-task-modal-container-options{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+.input-task-modal-container-options>div{
+    height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+}
+.input-task-modal-container-options>div>div>input{
+    height: 2rem;
+    width: auto;
+    border-radius: 15px;
+    padding: 1rem;
+    border: 1px solid var(--main-txt-color);
+}
+.input-task-modal-container-options>div>div+div{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+textarea{
+    resize: none;
+    border-radius: 15px;
+    padding: 1rem;
+    border: 1px solid var(--main-txt-color);
+}
+
+ /* ////////////////////////////////////////////////////////////// */
+
+  /*///////////////////////////////EDIT TASK MODAL////////////////////*/
+
+
+.modal-edit-task-trigger{
+    z-index: 20;
+    position: fixed; /* Positioning and size */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.596); /* color */
+    display: none; /* making it hidden by default */
+  }
+.edit-title{
+align-self: center;
+position: relative;
+}
+.edit-title::after{
+    content: '';
+    position: absolute;
+    left: 0%;
+    bottom: -1rem;
+    width: 100%;
+    height: 1px;
+    background-color: var(--main-fg-color);
+}
+
+   /* ////////////////////////////////////////////////////////////// */
+
+    /*///////////////////////////////EDIT PROJECT MODAL////////////////////*/
+
+
+.modal-edit-project-trigger{
+    z-index: 20;
+    position: fixed; /* Positioning and size */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.596); /* color */
+    display: none; /* making it hidden by default */
+  }
+.edit-title{
+align-self: center;
+position: relative;
+}
+.edit-title::after{
+    content: '';
+    position: absolute;
+    left: 0%;
+    bottom: -1rem;
+    width: 100%;
+    height: 1px;
+    background-color: var(--main-fg-color);
+}
+.delete-project{
+    background-color: var(--main-fg-color);
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    padding: .5rem 1rem;
+  }
+
+   /* ////////////////////////////////////////////////////////////// */
