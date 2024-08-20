@@ -45,9 +45,8 @@ function newTask() {
 
     const projectIndex = projects.findIndex(project => project.projectName === currentProject.projectName);
 
-    if (projectIndex !== -1) {
-        projects[projectIndex] = currentProject;
-    }
+    projects[projectIndex] = currentProject;
+
 
     saveProjects(projects);
     setCurrentProject(currentProject.projectName) // re set current project to render with new task
@@ -59,18 +58,16 @@ function deleteTask(currentProject, taskIndex) {
     let projects = getProjects()
     const projectIndex = projects.findIndex(project => project.projectName === currentProject.projectName);
 
-    if (projectIndex !== -1) {
-        const project = projects[projectIndex];
-        project.tasks.splice(taskIndex, 1);
-        saveProjects(projects);
+    const project = projects[projectIndex];
+    project.tasks.splice(taskIndex, 1);
+    saveProjects(projects);
 
-        setCurrentProject(project.projectName) // reset current project to render
-    }
+    setCurrentProject(project.projectName) // reset current project to render
+
 
 }
 
 function editProject(newName){
-
     const projects = getProjects()
     const currentProject = getCurrentProject()
 
@@ -80,8 +77,37 @@ function editProject(newName){
     saveProjects(projects)
     setCurrentProject(newName)
 
-    elements.editProjectModal.editProjectModalTrigger.style.display = "none"
+    elements.editProjectModal.editProjectModalTrigger.style.display = "none"  
+}
+
+function deleteProject(){
+    const currentProject = getCurrentProject()
+
+    let projects = getProjects()
+    const projectIndex = projects.findIndex(project => project.projectName === currentProject.projectName);
+    
+
+    projects.splice(projectIndex, 1);
+    saveProjects(projects);
+    setCurrentProject("Today") // reset current project to rtoday after a project is delete
     
 }
 
-export { getProjects, saveProjects, addProject, newTask, deleteTask, editProject };
+function editTask(taskIndex){
+    const edittedTask = {
+        title: elements.editTaskModal.editTaskNameInput.value,
+        notes: elements.editTaskModal.editTaskNotesInput.value,
+        dueDate: elements.editTaskModal.editTaskDueInput.value,
+        urgent: elements.editTaskModal.editTaskUrgentInput.checked
+    };
+
+    const currentProject = getCurrentProject()
+    let projects = getProjects()
+    const projectIndex = projects.findIndex(project => project.projectName === currentProject.projectName);
+    projects[projectIndex].tasks[taskIndex] = edittedTask
+    saveProjects(projects);
+    setCurrentProject(currentProject.projectName)
+
+}
+
+export { getProjects, saveProjects, addProject, newTask, deleteTask, editProject, deleteProject, editTask };

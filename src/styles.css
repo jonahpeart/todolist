@@ -97,6 +97,7 @@ button, input[type=submit]{
     flex-direction: column;
 }
 
+
 .project-sidebar-li{
 padding: 1rem;
 color: var(--main-txt-color);
@@ -109,7 +110,11 @@ list-style: none ;
     cursor: pointer;
 
 }
-.project-sidebar-li::before{
+
+
+
+
+/* .project-sidebar-li::before{
     display: none;
     content: '';
     position: absolute;
@@ -120,7 +125,7 @@ list-style: none ;
     left: 15px;
     height: 60%;
 
-}
+} */
 .project-sidebar{
     list-style: none;
 }
@@ -203,7 +208,7 @@ gap: 1rem;
   position: absolute;
   width: 1rem;
   height: 1rem;
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.527);
 }
 .task-item::before{
     content: '';

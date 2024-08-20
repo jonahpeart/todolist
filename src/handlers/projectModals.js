@@ -1,7 +1,7 @@
 import { getCurrentProject } from '../currentProjectState.js';
 import { elements } from '../elements.js';
 import { projectValidations } from '../formValidation.js'
-import {addProject, editProject} from '../storage.js';
+import {addProject, deleteProject, editProject} from '../storage.js';
 
 export function newProjectModalHandler() {
     elements.formError[0].innerHTML = '' // Clear error div
@@ -37,6 +37,8 @@ export function newProjectModalHandler() {
 
 }
 
+
+
 export function editProjectModalHandler() {
     elements.formError[3].innerHTML = '' // Clear error div
     elements.editProjectModal.editProjectModalTrigger.style.display="block" // show modal
@@ -63,14 +65,18 @@ export function editProjectModalHandler() {
             
         }
     }
-    /////////////// CANCEL BUTTON ///////////////////////////////////////////////////
+/////////////// CANCEL BUTTON ///////////////////////////////////////////////////
     elements.editProjectModal.editProjectCancel.addEventListener('click', function(e) {
         e.preventDefault()
-        elements.editProjectModal.editProjectForm.removeEventListener('submit', handleSubmit);
+        // elements.editProjectModal.editProjectForm.removeEventListener('submit', handleSubmit);
         elements.editProjectModal.editProjectNameInput.value = '';
         elements.editProjectModal.editProjectModalTrigger.style.display = 'none';
     });
 
-
-
+/////////////// DELETE BUTTON ///////////////////////////////////////////////////
+    elements.editProjectModal.editProjectDelete.addEventListener('click', function(e) {
+        e.preventDefault()
+        deleteProject()
+        elements.editProjectModal.editProjectModalTrigger.style.display = 'none';
+    });
 }

@@ -61,8 +61,8 @@ elements = {
         editTaskNotesInput: document.querySelector(".edit-task-notes-input"),
         editTaskDueInput: document.querySelector(".due-edit"),
         editTaskUrgentInput: document.querySelector(".urgent-checkbox-edit"),
-        editTasCancel: document.querySelector(".cancel-task-edit"),
-        editTasCreate: document.querySelector(".save-task"),
+        editTaskCancel: document.querySelector(".cancel-task-edit"),
+        editTaskCreate: document.querySelector(".save-task"),
     }
 }
 }

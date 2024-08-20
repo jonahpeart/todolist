@@ -1,7 +1,7 @@
 import { getCurrentProject } from '../currentProjectState.js';
 import { elements } from '../elements.js';
 import { deleteTask } from '../storage.js';
-import newTaskModalHandler from './taskModals.js';
+import {newTaskModalHandler, editTaskModalHandler} from './taskModals.js';
 
 export default function taskHandlers() {
 ///////////NEW TASK LIST ITEM EVENT////////////////////////////////////////////////////
@@ -17,8 +17,7 @@ export default function taskHandlers() {
 ///////////TASK LIST ITEM EDIT EVENT////////////////////////////////////////////////////
     Array.prototype.forEach.call(elements.taskListItem.editTasks, function (node){
         node.addEventListener('click', () => {
-            elements.editTaskModal.editTaskModalTrigger.style.display="block"
-            console.log(`task you want to edit: ${node.parentNode.childNodes[3].childNodes[0].textContent}`)
+            editTaskModalHandler(node.classList[3])
         });
     })
 ///////////TASK LIST ITEM DELETE EVENT////////////////////////////////////////////////////

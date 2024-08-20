@@ -1,5 +1,5 @@
 import { render } from "./render";
-import { getProjects, saveProjects } from "./storage";
+import { getProjects } from "./storage";
 
 let currentProjectName = null;
 
