@@ -34,7 +34,8 @@ function newTask() {
         title: elements.newTaskModal.newTaskNameInput.value,
         notes: elements.newTaskModal.newTaskNotesInput.value,
         dueDate: elements.newTaskModal.newTaskDueInput.value,
-        urgent: elements.newTaskModal.newTaskUrgentInput.checked
+        urgent: elements.newTaskModal.newTaskUrgentInput.checked,
+        completed: false
     };
 
     let currentProject = getCurrentProject();
@@ -107,7 +108,24 @@ function editTask(taskIndex){
     projects[projectIndex].tasks[taskIndex] = edittedTask
     saveProjects(projects);
     setCurrentProject(currentProject.projectName)
-
 }
 
-export { getProjects, saveProjects, addProject, newTask, deleteTask, editProject, deleteProject, editTask };
+function completeState(node){
+    const projects = getProjects()
+    const currentProject = getCurrentProject()
+    const projectIndex = projects.findIndex(project => project.projectName === currentProject.projectName);
+
+    if (currentProject.tasks[node.classList[0]].completed == false){
+        node.classList.add("checked")
+        projects[projectIndex].tasks[node.classList[0]].completed = true
+        saveProjects(projects)
+    } else {
+        node.classList.remove("checked")
+        projects[projectIndex].tasks[node.classList[0]].completed = false
+        saveProjects(projects)
+    }
+
+    // node.classList.contains("checked") ? node.classList.remove("checked") : node.classList.add("checked");
+}
+
+export { getProjects, saveProjects, addProject, newTask, deleteTask, editProject, deleteProject, editTask, completeState };

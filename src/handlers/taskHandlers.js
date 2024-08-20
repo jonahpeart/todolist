@@ -1,6 +1,6 @@
 import { getCurrentProject } from '../currentProjectState.js';
 import { elements } from '../elements.js';
-import { deleteTask } from '../storage.js';
+import { completeState, deleteTask, getProjects } from '../storage.js';
 import {newTaskModalHandler, editTaskModalHandler} from './taskModals.js';
 
 export default function taskHandlers() {
@@ -11,7 +11,7 @@ export default function taskHandlers() {
 ///////////TASK LIST ITEM CHECKMARK EVENT////////////////////////////////////////////////////
     Array.prototype.forEach.call(elements.taskListItem.taskChecks, function (node){
         node.addEventListener('click', () => {
-            node.classList.contains("checked") ? node.classList.remove("checked") : node.classList.add("checked");
+            completeState(node)
         });
     })
 ///////////TASK LIST ITEM EDIT EVENT////////////////////////////////////////////////////

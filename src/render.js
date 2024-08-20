@@ -26,6 +26,9 @@ export const render = (savedProjects, currentProject) => {
                 if (task.urgent) {
                     addUrgentClass(index);
                 }
+                if (task.completed == true){
+                    addCompleteClass(index)
+                }
             });
         }
 
@@ -55,7 +58,7 @@ const displayCurrentProjectName = (projectName) => {
 
 const generateTaskHTML = (task, index) => `
     <li class="task-item-container">
-        <div class="round"></div>
+        <div class="${index} complete-${index} round"></div>
         <p class="task-title task-title-${index}">${task.title}</p>
         <span class="material-symbols-outlined task-item edit-task ${index}">edit</span>
         <span id="${index}" class="material-symbols-outlined task-item delete-task ${index}">delete</span>
@@ -71,3 +74,8 @@ const addUrgentClass = (index) => {
     const urgentFlag = document.getElementsByClassName(`task-title-${index}`)[0];
     urgentFlag.classList.add("urgent");
 };
+
+const addCompleteClass = (index) =>{
+    const completeFlag = document.getElementsByClassName(`complete-${index}`)[0];
+    completeFlag.classList.add("checked");
+} 
