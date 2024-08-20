@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <link rel="stylesheet" href="./styles.css"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>To Do List</title>
+<script defer src="bundle.js"></script></head>
+<body>
+
+    <div class="application-container flex">
+
+        <div class="sidebar-container">
+
+            <p class="title">todosoft</p>
+
+
+            <div class="project-sidebar-header">
+                <button class="add-project">
+                    <span class="material-symbols-outlined">add_circle</span>
+                    New Project
+                </button>
+                <p class="project-sidebar-header-text">Your Projects</p>
+            </div>
+            
+            <ul class="projects-ul">
+                <!-- <li class="project-sidebar-li default-project">Today</li>            -->
+                <!--///////////////////-->
+                <!-- ADD PROJECTS HERE -->
+                <!--///////////////////-->
+            </ul>
+
+        </div>
+
+        <div class="content-container">
+
+            <div class="current-project-header">
+                <p class="current-project-text">//// <br> Project</p>
+
+                <div>
+                    <button class="add-task">
+                        <span class="material-symbols-outlined">add_circle</span>
+                        Add task
+                    </button>
+                    <button class="edit-project">
+                        <span class="material-symbols-outlined">settings</span>
+                        Edit Project
+                    </button>
+                </div>
+
+            </div>
+
+                <ul class="task-list-container">
+            
+                </ul>
+        </div>
+    </div>
+
+<!-------------------------------NEW PROJECT MODAL------------------------------------------------------->
+    <form class="new-project-form">
+        <div class="modal-project-trigger">
+            <div class="new-project-modal">
+            <div class="error-message"></div>
+                <p class="modal-title title">New Project</p>
+
+                    <div class="input-project-modal-container">
+                        <label for="text" class="modal-label">Project name:</label>
+                        <input class="new-project-modal-input" type="text">
+                    </div>
+
+                    <div class="button-project-modal-container">
+                        <button type="button" class="cancel cancel-project">
+                            Cancel
+                        </button>
+                        <input type="submit" value="Create Project" class="create-project">
+                    </div>
+            </div>
+        </div>
+    </form>
+
+<!------------------------------------------------------------------------------------------------------>
+
+<!-------------------------------NEW TASK MODAL------------------------------------------------------->
+<form class="new-task-form">
+    <div class="modal-task-trigger">
+
+        <div class="new-task-modal">
+            <div class="error-message"></div>
+            <p class="modal-title title">New Task</p>
+
+            <div class="input-task-modal-container">
+                <label for="text" class="modal-label">Task:</label>
+                <input class="new-task-modal-input-name" type="text">
+
+                
+            </div>
+            <div class="input-task-modal-container-options">
+
+                <label for="paragraph_text"> Notes:</label>
+                <textarea class="create-task-notes-input" name="paragraph_text" cols="20" rows="4"></textarea>
+
+                <div>
+                    <div>
+                        <label for="due"> Due:</label>
+                        <input type="date" class="due due-create" name="due" max="2030-12-31" />
+                    </div>
+                    <div>
+                        <input type="checkbox" class="urgent-checkbox-create" id="urgent" name="urgent" value="urgent">
+                        <label for="urgent"> Urgent</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-task-modal-container">
+
+                <button class="cancel cancel-task">
+                    Cancel
+                </button>
+
+                <input type="submit" value="Create Task" class="create-task">
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<!------------------------------------------------------------------------------------------------------>
+
+<!-------------------------------EDIT TASK MODAL------------------------------------------------------->
+<form class="edit-task-form">
+    <div class="modal-edit-task-trigger">
+        <div class="new-task-modal">
+            <div class="error-message"></div>
+            <p class="edit-title">Edit Task</p>
+
+            <div class="input-task-modal-container">
+                <label for="text" class="modal-label">Task:</label>
+                <input class="edit-task-modal-input-name" type="text">
+            </div>
+            <div class="input-task-modal-container-options">
+
+                <label for="paragraph_text"> Notes:</label>
+                <textarea class="edit-task-notes-input" name="paragraph_text" cols="20" rows="4"></textarea>
+                
+                <div>
+                    <div>
+                        <label for="due"> Due:</label>
+                        <input type="date" class="due due-edit" name="due" max="2030-12-31" />
+                    </div>
+                    <div>
+                        <input type="checkbox" class="urgent-checkbox-edit" id="urgent" name="urgent" value="urgent">
+                        <label for="urgent"> Urgent</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-task-modal-container">
+                <button class="cancel-task-edit cancel-task">
+                    Cancel
+                </button>
+
+                <input type="submit" value="Save" class="save-task"> 
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<!------------------------------------------------------------------------------------------------------>
+
+<!-------------------------------EDIT PROJECT MODAL------------------------------------------------------->
+<form class="edit-project-form">
+    <div class="modal-edit-project-trigger">
+        <div class="new-project-modal">
+        <div class="error-message"></div>
+            <p class="edit-title">Edit Project</p>
+
+            <div class="input-project-modal-container">
+                <label for="text" class="modal-label">Project name:</label>
+                <input class="edit-project-modal-input" type="text">
+            </div>
+
+            <div class="button-project-modal-container">
+                <button class="edit-cancel-project cancel">
+                    Cancel
+                </button>
+                <button class="delete-project">
+                    <span class="material-symbols-outlined">delete</span>
+                    Delete Project
+                </button>
+
+                <input type="submit" value="Save" class="save-project"> 
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<!------------------------------------------------------------------------------------------------------>
+    
+    
+</body>
+</html>
