@@ -4,6 +4,7 @@ import { setCurrentProject } from './currentProjectState.js';
 import projectHandlers from './handlers/projectHandlers.js';
 import { initializeElements } from './elements.js';
 
+
 // localStorage.clear();
 
 

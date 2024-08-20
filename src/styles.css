@@ -196,6 +196,7 @@ gap: 1rem;
   z-index: 1;
     grid-column: 2 / 7;
     position: relative;
+    font-size: 1.1rem;
 }
 .urgent{
   position: relative;
@@ -226,7 +227,7 @@ gap: 1rem;
 
 .notes-div{
   grid-row: 2;
-  grid-column: 2 / 6;
+  grid-column: 1 / 5;
   display: flex;
 }
 .task-notes{
@@ -237,9 +238,10 @@ gap: 1rem;
   padding: .25rem;
 }
 .task-due{
-    grid-column: 6 / 9;
+    grid-column: 5 / 9;
     justify-self: center;
     margin-left: .5rem;
+    font-size: .8rem;
 
 }
 .subscript{

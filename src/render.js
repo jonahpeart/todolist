@@ -1,6 +1,7 @@
 import { getCurrentProject } from './currentProjectState.js';
 import { initializeElements, elements } from './elements.js';
 import taskHandlers from './handlers/taskHandlers.js';
+import { formatDistanceToNow, format } from "date-fns";
 
 export const render = (savedProjects, currentProject) => {
     initializeElements();
@@ -66,7 +67,7 @@ const generateTaskHTML = (task, index) => `
             <p class="subscript task-notes-${index}">Notes:</p>
             <p class="task-notes">${task.notes}</p>
         </div>
-        <p class="task-due">Due: ${task.dueDate}</p>
+        <p class="task-due">Due: ${format(new Date(task.dueDate), 'MMM do, Y')}</p>
     </li>
 `;
 
@@ -79,3 +80,6 @@ const addCompleteClass = (index) =>{
     const completeFlag = document.getElementsByClassName(`complete-${index}`)[0];
     completeFlag.classList.add("checked");
 } 
+
+
+
